@@ -1,0 +1,14 @@
+name: get_csv_of_group_members
+channels: 
+  - anaconda-fusion
+  - defaults
+dependencies: 
+  - datetime
+  - getpass
+  - IPython.display
+  - jupyter
+  - pandas
+  - python-dotenv
+  - sys
+  - pip: 
+      - canvasapi
