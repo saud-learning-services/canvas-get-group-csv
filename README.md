@@ -42,6 +42,6 @@ _Are you Sauder Operations Staff? Please go [here](sauder-ops-guide.md) for deta
 1. Import environment: `$ conda env create -f environment.yml`
 
 1. Run:
-   1. `$ conda activate groups_csv`
+   1. `$ conda activate get_csv_of_group_members`
    1. `$ jupyter notebook`
    1. Select **Kernel** > **Restart & Run All**
