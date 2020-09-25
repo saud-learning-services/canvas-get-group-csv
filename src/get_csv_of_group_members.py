@@ -3,7 +3,7 @@ from canvasapi import Canvas
 import getpass
 import sys
 from IPython.display import display, HTML
-from helpers import createCSV, createInstance, getCourseFromID
+from helpers import _create_csv, _create_instance, _get_course, _confirm_url
 from datetime import datetime
 
 
@@ -12,7 +12,7 @@ def get_group_data():
     API_KEY = getpass.getpass("Enter Token: ")
 
     try: 
-        course_id, course = getCourseFromID(createInstance(API_URL, API_KEY))
+        course_id, course = _get_course(create_instance(API_URL, API_KEY))
         groups = course.get_groups(per_page=50)
         course_name = course.name
 
@@ -47,22 +47,6 @@ def get_group_data():
         print("Something went wrong: {}".format(str(e)))
         sys.exit(1)
 
-def _confirm_url(API_URL):
-    while True:
-        confirmation = input("The API_URL is set as: {}\nIs this correct? (y/n): ".format(API_URL))
-        
-        if confirmation == "y":
-            API_URL = API_URL
-            break
-        elif confirmation =="n":
-            API_URL = input("\nPlease enter correct URL\n: ")
-            confirmation = input("The API_URL is set as: {}\nIs this correct? (y/n): ".format(API_URL))
-            break
-        else:
-            print("Please enter 'y' to accept or 'n' to enter correct\n")
-            continue
-    return(API_URL)
-
 
 def main():
     OUTPUT = "output"
@@ -74,7 +58,7 @@ def main():
     df, course_id, course_name = get_group_data()
     display(df)
     output_name = "{}/{}_{}_Group Information_{}.csv".format(OUTPUT, course_id, course_name, timestamp)
-    createCSV(df, output_name)
+    _create_csv(df, output_name)
 
 if __name__ == "__main__":
     # execute only if run as a script

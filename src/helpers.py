@@ -9,8 +9,23 @@ import re
 import ast
 #import re 
 
+def _confirm_url(API_URL):
+    while True:
+        confirmation = input("The API_URL is set as: {}\nIs this correct? (y/n): ".format(API_URL))
+        
+        if confirmation == "y":
+            API_URL = API_URL
+            break
+        elif confirmation =="n":
+            API_URL = input("\nPlease enter correct URL\n: ")
+            confirmation = input("The API_URL is set as: {}\nIs this correct? (y/n): ".format(API_URL))
+            break
+        else:
+            print("Please enter 'y' to accept or 'n' to enter correct\n")
+            continue
+    return(API_URL)
 
-def createCSV(df, output_name):
+def _create_csv(df, output_name):
     print(df.head())
 
     while True:
@@ -29,7 +44,7 @@ def createCSV(df, output_name):
 
 # tries to create a canvas instance
 # checks that it is valid by getting self information
-def createInstance(API_URL, API_KEY):
+def _create_instance(API_URL, API_KEY):
     try:
         canvas = Canvas(API_URL, API_KEY)
         print("Token Valid: {}".format(str(canvas.get_user('self'))))
@@ -40,7 +55,7 @@ def createInstance(API_URL, API_KEY):
         #raise
 
 # get course id
-def getCourseFromID(canvas):
+def _get_course(canvas):
     course_id = input("Enter Course ID: ")
     try:            
         course = canvas.get_course(course_id)
@@ -50,7 +65,7 @@ def getCourseFromID(canvas):
         print(str(e))
         sys.exit(1)
 
-def all_dict_to_str(d):
+def _all_dict_to_str(d):
     """
         Handles dictionaries returned from canvas.
         When data returned some items are not strings - changes all items to strings.
@@ -70,7 +85,7 @@ def all_dict_to_str(d):
             return(new)
 
 # Working with DataFrames and 
-def list_to_df(df, col_to_expand):
+def _list_to_df(df, col_to_expand):
     """
     Expands column that contains list to multiple rows (1/list item)
     Keeps original columns. 
@@ -83,7 +98,7 @@ def list_to_df(df, col_to_expand):
     return(new_df)
         
 
-def dict_to_cols(df, col_to_expand, expand_name):
+def _dict_to_cols(df, col_to_expand, expand_name):
     """
     Expands column that contains dict to multiple columns (1/dict key)
     Handles transforming column specified to appropriate dict (where all items are strings)
