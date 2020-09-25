@@ -12,3 +12,4 @@ dependencies:
       - python-dotenv
       - getpass
       - datetime
+      - termcolor

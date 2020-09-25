@@ -3,18 +3,24 @@ from canvasapi import Canvas
 import getpass
 import sys
 from IPython.display import display, HTML
-from helpers import _create_csv, _create_instance, _get_course, _confirm_url
+from helpers import _create_csv
 from datetime import datetime
+from interface import get_user_inputs, shut_down
+from dotenv import load_dotenv
+import settings
 
+# for printing neatly formatted objects (used for debugging)
+load_dotenv()
 
-def get_group_data():
-    # ask for the API_KEY
-    API_KEY = getpass.getpass("Enter Token: ")
-
-    try: 
-        course_id, course = _get_course(create_instance(API_URL, API_KEY))
+def get_group_data(course):
+    # get groups from course
+    try:
         groups = course.get_groups(per_page=50)
-        course_name = course.name
+
+        try:
+            groups[0]
+        except IndexError:
+            shut_down(f'No groups found in the course {course.name}.')
 
         all_groups = []
 
@@ -41,23 +47,23 @@ def get_group_data():
             #     #group_dict['workflow_state'] = member.workflow_state
             #     #group_dict['membership_id'] = member.id
             
-        return(pd.DataFrame(all_groups), course_id, course_name)
+        return(pd.DataFrame(all_groups))
 
     except Exception as e:
-        print("Something went wrong: {}".format(str(e)))
-        sys.exit(1)
-
+        shut_down("Something went wrong: {}".format(str(e)))
 
 def main():
-    OUTPUT = "output"
-    API_URL = "https://ubc.instructure.com"
-    API_URL = _confirm_url() 
 
+    settings.init()
+    url, course_id = get_user_inputs()
+    
     now = datetime.now()
     timestamp = now.strftime("%Y-%m-%d_%H%M%S")
-    df, course_id, course_name = get_group_data()
+
+    df = get_group_data(settings.course)
+    
     display(df)
-    output_name = "{}/{}_{}_Group Information_{}.csv".format(OUTPUT, course_id, course_name, timestamp)
+    output_name = "{}/{}_{}_Group Information_{}.csv".format("output", course_id, settings.course.name, timestamp)
     _create_csv(df, output_name)
 
 if __name__ == "__main__":
