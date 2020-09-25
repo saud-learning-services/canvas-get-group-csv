@@ -6,9 +6,8 @@ from IPython.display import display, HTML
 from helpers import createCSV, createInstance, getCourseFromID
 from datetime import datetime
 
-OUTPUT = "output"
 
-def getGroupData():
+def get_group_data():
     # ask for the API_KEY
     API_KEY = getpass.getpass("Enter Token: ")
 
@@ -48,14 +47,35 @@ def getGroupData():
         print("Something went wrong: {}".format(str(e)))
         sys.exit(1)
 
+def _confirm_url(API_URL):
+    while True:
+        confirmation = input("The API_URL is set as: {}\nIs this correct? (y/n): ".format(API_URL))
+        
+        if confirmation == "y":
+            API_URL = API_URL
+            break
+        elif confirmation =="n":
+            API_URL = input("\nPlease enter correct URL\n: ")
+            confirmation = input("The API_URL is set as: {}\nIs this correct? (y/n): ".format(API_URL))
+            break
+        else:
+            print("Please enter 'y' to accept or 'n' to enter correct\n")
+            continue
+    return(API_URL)
 
-# use the df created in previous steps (Jupyter only)
-# confirm 
 
-now = datetime.now()
-timestamp = now.strftime("%Y-%m-%d_%H%M%S")
+def main():
+    OUTPUT = "output"
+    API_URL = "https://ubc.instructure.com"
+    API_URL = _confirm_url() 
 
-df, course_id, course_name = getGroupData()
-display(df)
-output_name = "{}/{}_{}_Group Information_{}.csv".format(OUTPUT, course_id, course_name, timestamp)
-createCSV(df, output_name)
+    now = datetime.now()
+    timestamp = now.strftime("%Y-%m-%d_%H%M%S")
+    df, course_id, course_name = get_group_data()
+    display(df)
+    output_name = "{}/{}_{}_Group Information_{}.csv".format(OUTPUT, course_id, course_name, timestamp)
+    createCSV(df, output_name)
+
+if __name__ == "__main__":
+    # execute only if run as a script
+    main()
