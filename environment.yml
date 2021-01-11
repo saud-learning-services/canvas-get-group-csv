@@ -1,15 +1,15 @@
-name: get_csv_of_group_members
+name: canvas-get-group-csv
 channels: 
   - anaconda-fusion
   - defaults
   - conda-forge
 dependencies: 
   - jupyter
+  - python>=3.7.0
   - pandas
   - pip
   - pip: 
-      - canvasapi
+      - canvasapi>= 2.0.0
       - python-dotenv
       - getpass
-      - datetime
       - termcolor
