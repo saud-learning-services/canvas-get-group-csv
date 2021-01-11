@@ -1,5 +1,11 @@
 # Canvas Get Group Csv
 
+> - name: canvas-get-group-csv
+> - ops-run-with: jupyter
+> - python>=3.7
+> - canvasapi>=2.0.0
+> - supports universal environment 🌎
+
 ## Summary
 
 **Canvas Get Group Csv** is a Jupyter Notebook and Python application that is used to extract a csv file of group names and associated student user IDs in any Canvas course. The output is a csv called "courseid_course_name_Group Information_datetime.csv" in the folder "output". Application requires the following user inputs:
