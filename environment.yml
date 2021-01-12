@@ -11,5 +11,4 @@ dependencies:
   - pip: 
       - canvasapi>= 2.0.0
       - python-dotenv
-      - getpass
       - termcolor
