@@ -47,5 +47,5 @@ _Are you Sauder Operations Staff? Please go **TODO**[TODO](todo) for detailed in
 ### Every Time
 1. Run:
    1. `$ conda activate canvas-get-group-csv`
-   1. `$ python src/get_csv_of_group_members.py`
+   1. `$ python src/get_group_csv.py`
    1. Follow instructions in terminal for inputs.
