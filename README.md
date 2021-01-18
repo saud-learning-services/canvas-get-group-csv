@@ -36,7 +36,12 @@ group_id,group_name,course_name,course_id,user_id,user_name
 
 ## Getting Started
 
-_Are you Sauder Operations Staff? Please go **TODO**[TODO](todo) for detailed instructions_
+## Getting Started
+
+### Sauder Operations
+
+_Are you Sauder Operations Staff? Please go [here](https://github.com/saud-learning-services/instructions-and-other-templates/blob/main/docs/running-instructions.md) for detailed instructions to run in Jupyter. ("The Project", or "the-project" is "canvas-get-group-csv" or "Canvas Get Group CSV")._
+
 
 > Project uses **conda** to manage environment (See official **conda** documentation [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
 
