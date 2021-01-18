@@ -3,7 +3,7 @@ from canvasapi import Canvas
 import getpass
 import sys
 from IPython.display import display, HTML
-from helpers import _create_csv
+from helpers import _create_csv, slugify
 from datetime import datetime
 from interface import get_user_inputs, shut_down
 from dotenv import load_dotenv
@@ -63,7 +63,7 @@ def main():
     df = get_group_data(settings.course)
     
     display(df)
-    output_name = "{}/{}_{}_Group Information_{}.csv".format("output", course_id, settings.course.name, timestamp)
+    output_name = "{}/{}_{}_Group_Information_{}.csv".format("output", course_id, slugify(settings.course.name), timestamp)
     _create_csv(df, output_name)
 
 if __name__ == "__main__":
