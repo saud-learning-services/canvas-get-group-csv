@@ -34,7 +34,6 @@ group_id,group_name,course_name,course_id,user_id,user_name
 - Group sets on Canvas are ignored - only group names included in output.
 - Duplicate group names are not corrected. 
 
-## Getting Started
 
 ## Getting Started
 
