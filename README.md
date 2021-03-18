@@ -1,5 +1,6 @@
 # Canvas Get Group Csv
-> **You can now export and create groups with a csv using the Canvas interface. We recommend using the Canvas tools instead of the API whenever possible.** For details see the canvas docs ["How do I import a group set"](https://community.canvaslms.com/t5/Instructor-Guide/How-do-I-import-groups-in-a-group-set/ta-p/417799) (when a group is created and you "import", you get details of the current group status as well).
+
+⚠️ **You can now export and create groups with a csv using the Canvas interface. We recommend using the Canvas tools instead of the API whenever possible.** For details see the canvas docs ["How do I import a group set"](https://community.canvaslms.com/t5/Instructor-Guide/How-do-I-import-groups-in-a-group-set/ta-p/417799) (when a group is created and you "import", you get details of the current group status as well).
 
 > - name: canvas-get-group-csv
 > - ops-run-with: jupyter
